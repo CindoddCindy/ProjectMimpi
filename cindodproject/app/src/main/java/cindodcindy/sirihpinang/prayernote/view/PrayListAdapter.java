@@ -2,9 +2,12 @@ package cindodcindy.sirihpinang.prayernote.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +26,20 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
 
     private Context context;
     private List<PrayPojo> prayPojoList;
+
+    private Animation animationUp, animationDown;
+
+    private final int COUNTDOWN_RUNNING_TIME = 500;
+
+    private LayoutInflater layoutInflater;
+
+
+    public PrayListAdapter(Context context, Animation animationUp, Animation animationDown) {
+        this.layoutInflater = LayoutInflater.from(context);
+        this.animationDown = animationDown;
+        this.animationUp = animationUp;
+        this.context = context;
+    }
 
     public PrayListAdapter(Context context) {
         this.context = context;
@@ -49,7 +66,7 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
            }
 
     @Override
-    public void onBindViewHolder(@NonNull PrayAdapterChild holder, int position) {
+    public void onBindViewHolder(@NonNull final PrayAdapterChild holder, int position) {
         final PrayPojo prayPojo = prayPojoList.get(position);
 
 
@@ -65,6 +82,36 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             }
         });
 
+        holder.txtContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (holder.contentLayout.isShown()) {
+                    holder.contentLayout.startAnimation(animationUp);
+
+                    CountDownTimer countDownTimerStatic = new CountDownTimer(COUNTDOWN_RUNNING_TIME, 16) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            holder.contentLayout.setVisibility(View.GONE);
+                        }
+                    };
+                    countDownTimerStatic.start();
+
+
+                } else {
+                    holder.contentLayout.setVisibility(View.VISIBLE);
+                    holder.contentLayout.startAnimation(animationDown);
+
+
+                }
+            }
+        });
+
+
+
 
     }
 
@@ -78,6 +125,11 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
         public TextView textView_date, textView_pray;
         public ImageView imageView_edit, imageView_delete;
         public CardView cardView_pray;
+        public View contentLayout;
+        private TextView txtContent;
+        private CardView cardView_answ_pr;
+
+
 
         public PrayAdapterChild(@NonNull View itemView) {
             super(itemView);
@@ -86,6 +138,12 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             imageView_edit=itemView.findViewById(R.id.iv_edit_pray);
             imageView_delete=itemView.findViewById(R.id.iv_delete_pray);
             cardView_pray=itemView.findViewById(R.id.cv_pray_content);
+            txtContent=itemView.findViewById(R.id.tv_prayer_answered_click);
+            cardView_answ_pr=itemView.findViewById(R.id.cv_answ_pr);
+
+
+
+
         }
     }
 }

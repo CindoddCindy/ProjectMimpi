@@ -37,6 +37,7 @@ public class ListDoa extends AppCompatActivity {
         dataPray = new DataPray(this);
 
         rvList = findViewById(R.id.rv_list);
+        fabAdd=findViewById(R.id.btn_add);
 
         prayListAdapter = new PrayListAdapter(this);
         rvList.setLayoutManager(new LinearLayoutManager(this));
@@ -44,8 +45,11 @@ public class ListDoa extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ListDoa.this, WriteDoa.class));
-            }
+                Intent intent = new Intent(ListDoa.this,WriteDoa.class);
+                startActivity(intent);
+                finish();
+
+                 }
         });
 
 

@@ -11,6 +11,7 @@
     tools:context=".controller.WriteDoa">
 
     <TextView
+        android:id="@+id/write_date"
         android:background="@color/cardview_shadow_end_color"
         android:textColor="@color/colorTextBlack"
         android:textStyle="bold"
@@ -28,6 +29,7 @@
       android:layout_height="wrap_content">
 
       <EditText
+          android:id="@+id/write_pray"
           android:background="@color/cardview_shadow_end_color"
           android:textColor="@color/colorTextBlack"
           android:textStyle="bold"
@@ -45,6 +47,7 @@
   </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/save_pray"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="10dp"

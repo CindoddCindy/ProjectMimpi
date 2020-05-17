@@ -12,6 +12,13 @@ public class PrayPojo {
         this.pray=pray;
     }
 
+    public PrayPojo(String date, String pray){
+        this.date=date;
+        this.pray=pray;
+    }
+
+
+
     public int getPrayId() {
         return prayId;
     }

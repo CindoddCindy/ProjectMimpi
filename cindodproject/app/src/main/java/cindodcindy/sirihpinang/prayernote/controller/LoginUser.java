@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.view.ExpandLayout;
+import cindodcindy.sirihpinang.prayernote.view.ListDoa;
 
 public class LoginUser extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class LoginUser extends AppCompatActivity {
         button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginUser.this, ExpandLayout.class);
+                Intent intent = new Intent(LoginUser.this, ListDoa.class);
                 startActivity(intent);
                 finish();
             }
