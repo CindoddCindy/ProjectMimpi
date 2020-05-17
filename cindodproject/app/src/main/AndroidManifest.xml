@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.WritePray"></activity>
+        <activity android:name=".view.ExpandLayout"></activity>
+        <activity android:name=".view.WritePray" />
         <activity android:name=".controller.UserDataActivity" />
         <activity android:name=".controller.LoginUser" />
         <activity android:name=".MainActivity">
