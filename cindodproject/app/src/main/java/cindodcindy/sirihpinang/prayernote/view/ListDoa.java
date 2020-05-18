@@ -23,6 +23,7 @@ public class ListDoa extends AppCompatActivity {
     private RecyclerView rvList;
     private FloatingActionButton fabAdd;
 
+
     private DataPray dataPray;
     private PrayListAdapter prayListAdapter;
     private List<PrayPojo> prayPojoArrayList = new ArrayList<>();
@@ -35,13 +36,14 @@ public class ListDoa extends AppCompatActivity {
         setContentView(R.layout.list_doa);
 
         dataPray = new DataPray(this);
-
-        rvList = findViewById(R.id.rv_list);
         fabAdd=findViewById(R.id.btn_add);
 
-        prayListAdapter = new PrayListAdapter(this);
-        rvList.setLayoutManager(new LinearLayoutManager(this));
+        rvList = findViewById(R.id.rv_list);
+        prayListAdapter = new PrayListAdapter(ListDoa.this,prayPojoArrayList );
         rvList.setAdapter(prayListAdapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ListDoa.this);
+        rvList.setLayoutManager(linearLayoutManager);
+
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,17 +61,8 @@ public class ListDoa extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getNotes();
-    }
-
-    private void getNotes() {
-        prayPojoArrayList= dataPray.getPray();//.getNotes();
-        prayListAdapter.setNotes(prayPojoArrayList);
-
-        if (prayPojoArrayList.size() != 0) {
-            rvList.setVisibility(View.VISIBLE);
-        } else {
-            rvList.setVisibility(View.GONE);
-        }
+        prayPojoArrayList = dataPray.getAll();
+        prayListAdapter = new PrayListAdapter(this, prayPojoArrayList);
+        rvList.setAdapter(prayListAdapter);
     }
 }

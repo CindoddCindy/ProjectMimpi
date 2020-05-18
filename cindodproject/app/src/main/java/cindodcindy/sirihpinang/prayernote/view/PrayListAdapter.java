@@ -27,29 +27,12 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     private Context context;
     private List<PrayPojo> prayPojoList;
 
-    private Animation animationUp, animationDown;
 
-    private final int COUNTDOWN_RUNNING_TIME = 500;
-
-    private LayoutInflater layoutInflater;
-
-
-    public PrayListAdapter(Context context, Animation animationUp, Animation animationDown) {
-        this.layoutInflater = LayoutInflater.from(context);
-        this.animationDown = animationDown;
-        this.animationUp = animationUp;
+    public PrayListAdapter(Context context, List<PrayPojo> prayPojoList) {
+        this.prayPojoList=prayPojoList;
         this.context = context;
     }
 
-    public PrayListAdapter(Context context) {
-        this.context = context;
-        this.prayPojoList = new ArrayList<>();
-    }
-
-    public void setNotes(List<PrayPojo> prayPojoList) {
-        this.prayPojoList = prayPojoList;
-        notifyDataSetChanged();
-    }
 
 
 
@@ -59,11 +42,13 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     @NonNull
     @Override
     public PrayAdapterChild onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_adapter, parent, false);
-        return new PrayAdapterChild(v);
+        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_adapter, parent, false);
+        PrayAdapterChild prayAdapterChild = new PrayAdapterChild(mView);
 
 
-           }
+        return prayAdapterChild;
+
+    }
 
     @Override
     public void onBindViewHolder(@NonNull final PrayAdapterChild holder, int position) {
@@ -72,6 +57,8 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
 
         holder.textView_date.setText(prayPojo.getDate());
         holder.textView_pray.setText(prayPojo.getPray());
+        holder.textView_date_answ.setText(prayPojo.getDate_ans());
+        holder.textView_pray_answ.setText(prayPojo.getPray_answ());
         holder.cardView_pray.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,33 +69,6 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             }
         });
 
-        holder.txtContent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.contentLayout.isShown()) {
-                    holder.contentLayout.startAnimation(animationUp);
-
-                    CountDownTimer countDownTimerStatic = new CountDownTimer(COUNTDOWN_RUNNING_TIME, 16) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            holder.contentLayout.setVisibility(View.GONE);
-                        }
-                    };
-                    countDownTimerStatic.start();
-
-
-                } else {
-                    holder.contentLayout.setVisibility(View.VISIBLE);
-                    holder.contentLayout.startAnimation(animationDown);
-
-
-                }
-            }
-        });
 
 
 
@@ -128,6 +88,7 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
         public View contentLayout;
         private TextView txtContent;
         private CardView cardView_answ_pr;
+        public TextView textView_date_answ, textView_pray_answ;
 
 
 
@@ -140,6 +101,9 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             cardView_pray=itemView.findViewById(R.id.cv_pray_content);
             txtContent=itemView.findViewById(R.id.tv_prayer_answered_click);
             cardView_answ_pr=itemView.findViewById(R.id.cv_answ_pr);
+
+            textView_date_answ=itemView.findViewById(R.id.tv_date_ans);
+            textView_pray_answ=itemView.findViewById(R.id.tv_answ_pr);
 
 
 

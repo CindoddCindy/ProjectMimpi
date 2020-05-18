@@ -20,6 +20,7 @@ import java.util.Calendar;
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.PrayPojo;
+import cindodcindy.sirihpinang.prayernote.view.ListDoa;
 
 public class WriteDoa extends AppCompatActivity {
 
@@ -42,6 +43,8 @@ public class WriteDoa extends AppCompatActivity {
         textView_save_write = findViewById(R.id.save_pray);
 
         calendar = Calendar.getInstance();
+
+        dataPray = new DataPray(this);
 
 
         textView_write_date.setOnClickListener(new View.OnClickListener() {
@@ -70,16 +73,11 @@ public class WriteDoa extends AppCompatActivity {
         textView_save_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String date = textView_write_date.getText().toString();
-                String pray = textView_write_pray.getText().toString();
-                if (isInputValid()) {
-                    if (isEdit) {
-                        updateNote(prayID, date, pray);
-                    } else {
-                        saveNote(date, pray);
-                    }
-                }
-
+                        dataPray.insertData(textView_write_date.getText().toString(), textView_write_pray.getText().toString(),textView_write_date.getText().toString(),textView_write_pray.getText().toString());
+                        Toast.makeText(getApplicationContext(), "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(WriteDoa.this, ListDoa.class);
+                        startActivity(intent);
+                        finish();
 
             }
         });
@@ -87,51 +85,6 @@ public class WriteDoa extends AppCompatActivity {
 
     }
 
-    private void saveNote(String dates, String pray) {
-
-         PrayPojo prayPojo = new PrayPojo( dates, pray);
-        int success = dataPray.addPray(prayPojo);
-
-        String message = "Note gagal disimpan";
-
-        if (success != 0) {
-            message = "Note berhasil disimpan";
-            finish();
-        }
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-
-    private boolean isInputValid() {
-        if (TextUtils.isEmpty(textView_write_date.getText()) || TextUtils.isEmpty(textView_write_pray.getText())) {
-            if (TextUtils.isEmpty(textView_write_date.getText())) {
-                textView_write_date.setError("Judul tidak boleh kosong!");
-            }
-
-            if (TextUtils.isEmpty(textView_write_pray.getText())) {
-                textView_write_pray.setError("Note tidak boleh kosong!");
-            }
-
-            return false;
-        }
-
-        return true;
-    }
-
-    private void updateNote(int prayID, String date, String pray) {
-        PrayPojo prayPojo = new PrayPojo(prayID, date, pray);
-        int success = dataPray.updatePrayNote(prayPojo);
-
-        String message = "Note gagal di update";
-
-        if (success != 0) {
-            message = "Note berhasil di update";
-            finish();
-        }
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 
 }
 
