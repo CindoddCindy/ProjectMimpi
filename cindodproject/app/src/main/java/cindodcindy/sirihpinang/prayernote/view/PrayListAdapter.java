@@ -1,6 +1,8 @@
 package cindodcindy.sirihpinang.prayernote.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,8 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cindodcindy.sirihpinang.prayernote.R;
+import cindodcindy.sirihpinang.prayernote.controller.EditActivity;
+import cindodcindy.sirihpinang.prayernote.controller.EditAnsw;
 import cindodcindy.sirihpinang.prayernote.controller.WriteAnsw;
 import cindodcindy.sirihpinang.prayernote.controller.WriteDoa;
+import cindodcindy.sirihpinang.prayernote.model.DataPray;
+import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PrayPojo;
 
@@ -30,6 +36,8 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     private Context context;
     private List<PrayPojo> prayPojoList;
     private  List<PojoAnsw> pojoAnswsList;
+    private DataPray dataPray;
+    private DataPrayAnsw dataPrayAnsw;
 
 
     public PrayListAdapter(Context context, List<PrayPojo> prayPojoList,List<PojoAnsw> pojoAnswsList) {
@@ -81,6 +89,77 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             }
         });
 
+        holder.imageView_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Delete ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dataPray.deleteData(prayPojo.getPrayId());
+                        dialogInterface.dismiss();
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+
+            }
+        });
+
+        holder.imageView_answ_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Delete ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dataPrayAnsw.deleteDataAnsw(pojoAnsw.getIdAnsw());
+                        dialogInterface.dismiss();
+                        notifyDataSetChanged();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        holder.imageView_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditActivity.class);
+                intent.putExtra("ID", prayPojo.getPrayId());
+                context.startActivity(intent);
+
+
+            }
+        });
+
+        holder.imageView_answ_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditAnsw.class);
+                intent.putExtra("IDAnsw", pojoAnsw.getIdAnsw());
+                context.startActivity(intent);
+
+
+            }
+        });
+
 
 
 
@@ -95,7 +174,7 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     public class PrayAdapterChild extends RecyclerView.ViewHolder{
 
         public TextView textView_date, textView_pray;
-        public ImageView imageView_edit, imageView_delete;
+        public ImageView imageView_edit, imageView_delete,imageView_answ_edit, imageView_answ_delete;
         public CardView cardView_pray;
         public View contentLayout;
         private TextView txtContent;
@@ -113,6 +192,8 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             cardView_pray=itemView.findViewById(R.id.cv_pray_content);
             txtContent=itemView.findViewById(R.id.tv_prayer_answered_click);
             cardView_answ_pr=itemView.findViewById(R.id.cv_answ_pr);
+            imageView_answ_edit=itemView.findViewById(R.id.iv_edit_answ);
+            imageView_answ_delete=itemView.findViewById(R.id.iv_delete_answ);
 
             textView_date_answ=itemView.findViewById(R.id.tv_date_ans);
             textView_pray_answ=itemView.findViewById(R.id.tv_answ_pr);
