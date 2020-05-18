@@ -2,6 +2,7 @@ package cindodcindy.sirihpinang.prayernote.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,18 +20,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cindodcindy.sirihpinang.prayernote.R;
+import cindodcindy.sirihpinang.prayernote.controller.WriteAnsw;
 import cindodcindy.sirihpinang.prayernote.controller.WriteDoa;
+import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PrayPojo;
 
 public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAdapterChild> {
 
     private Context context;
     private List<PrayPojo> prayPojoList;
+    private  List<PojoAnsw> pojoAnswsList;
 
 
-    public PrayListAdapter(Context context, List<PrayPojo> prayPojoList) {
-        this.prayPojoList=prayPojoList;
+    public PrayListAdapter(Context context, List<PrayPojo> prayPojoList,List<PojoAnsw> pojoAnswsList) {
         this.context = context;
+        this.prayPojoList=prayPojoList;
+        this.pojoAnswsList=pojoAnswsList;
+
     }
 
 
@@ -53,18 +59,24 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     @Override
     public void onBindViewHolder(@NonNull final PrayAdapterChild holder, int position) {
         final PrayPojo prayPojo = prayPojoList.get(position);
+        final PojoAnsw pojoAnsw= pojoAnswsList.get(position);
 
 
         holder.textView_date.setText(prayPojo.getDate());
         holder.textView_pray.setText(prayPojo.getPray());
-        holder.textView_date_answ.setText(prayPojo.getDate_ans());
-        holder.textView_pray_answ.setText(prayPojo.getPray_answ());
-        holder.cardView_pray.setOnClickListener(new View.OnClickListener() {
+
+        holder.textView_date_answ.setText(pojoAnsw.getDate_answ());
+        holder.textView_pray_answ.setText(pojoAnsw.getPray_answ());
+
+        holder.cardView_answ_pr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, WriteDoa.class);
-                intent.putExtra("isEdit", true);
-                intent.putExtra("noteID", prayPojo.getPrayId());
+
+                Bundle bundle = new Bundle();
+                bundle.putString("date_pray_answ", pojoAnsw.getDate_answ());
+                bundle.putString("pray_ans",pojoAnsw.getPray_answ());
+                Intent intent = new Intent(context, WriteAnsw.class);
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });

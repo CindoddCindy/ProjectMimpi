@@ -73,7 +73,7 @@ public class WriteDoa extends AppCompatActivity {
         textView_save_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        dataPray.insertData(textView_write_date.getText().toString(), textView_write_pray.getText().toString(),textView_write_date.getText().toString(),textView_write_pray.getText().toString());
+                        dataPray.insertData(textView_write_date.getText().toString(), textView_write_pray.getText().toString());
                         Toast.makeText(getApplicationContext(), "Data Tersimpan", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(WriteDoa.this, ListDoa.class);
                         startActivity(intent);

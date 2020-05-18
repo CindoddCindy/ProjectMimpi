@@ -16,6 +16,8 @@ import java.util.List;
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.controller.WriteDoa;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
+import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
+import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PrayPojo;
 
 public class ListDoa extends AppCompatActivity {
@@ -25,8 +27,11 @@ public class ListDoa extends AppCompatActivity {
 
 
     private DataPray dataPray;
+    private DataPrayAnsw dataPrayAnsw;
     private PrayListAdapter prayListAdapter;
     private List<PrayPojo> prayPojoArrayList = new ArrayList<>();
+    private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
+
 
 
 
@@ -36,10 +41,12 @@ public class ListDoa extends AppCompatActivity {
         setContentView(R.layout.list_doa);
 
         dataPray = new DataPray(this);
+        dataPrayAnsw=new DataPrayAnsw(this);
+
         fabAdd=findViewById(R.id.btn_add);
 
         rvList = findViewById(R.id.rv_list);
-        prayListAdapter = new PrayListAdapter(ListDoa.this,prayPojoArrayList );
+        prayListAdapter = new PrayListAdapter(ListDoa.this,prayPojoArrayList,pojoAnswArrayList );
         rvList.setAdapter(prayListAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ListDoa.this);
         rvList.setLayoutManager(linearLayoutManager);
@@ -62,7 +69,8 @@ public class ListDoa extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         prayPojoArrayList = dataPray.getAll();
-        prayListAdapter = new PrayListAdapter(this, prayPojoArrayList);
+        pojoAnswArrayList= dataPrayAnsw.getAllAnsw();
+        prayListAdapter = new PrayListAdapter(this, prayPojoArrayList,pojoAnswArrayList);
         rvList.setAdapter(prayListAdapter);
     }
 }

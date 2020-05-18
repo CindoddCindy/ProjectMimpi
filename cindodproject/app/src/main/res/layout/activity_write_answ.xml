@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/write_answ_pray"
     android:layout_gravity="bottom"
     android:gravity="bottom"
-    tools:context=".controller.WriteDoa">
+    android:background="@drawable/writepray"
+    tools:context=".controller.WriteAnsw">
 
     <TextView
         android:gravity="center"
-        android:id="@+id/write_date"
+        android:id="@+id/write_date_answ"
         android:background="@color/cardview_shadow_end_color"
-        android:textColor="@color/colorText"
+        android:textColor="@color/colorTextBlack"
         android:textStyle="bold"
         android:layout_margin="10dp"
         android:padding="5dp"
@@ -25,42 +25,42 @@
 
     </TextView>
 
-  <com.google.android.material.textfield.TextInputLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-      <EditText
-          android:gravity="center"
-          android:id="@+id/write_pray"
-          android:background="@color/cardview_shadow_end_color"
-          android:textColor="@color/colorText"
-          android:textStyle="bold"
-          android:layout_margin="10dp"
-          android:padding="10dp"
-          android:textSize="15dp"
-          android:hint="Write Here"
-          android:layout_marginBottom="10dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+        <EditText
+            android:gravity="center"
+            android:id="@+id/write_pray_answ"
+            android:background="@color/cardview_shadow_end_color"
+            android:textColor="@color/colorTextBlack"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:hint="Write Here"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-      </EditText>
+        </EditText>
 
 
-  </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
-        android:id="@+id/save_pray"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="10dp"
         android:textColor="@color/colorText"
-        android:text="Save As My Pray"
+        android:id="@+id/tv_pray_answ_save"
+        android:text="Save As My Answered Pray"
         android:background="@color/colorApp"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </TextView>
-
 
 </LinearLayout>

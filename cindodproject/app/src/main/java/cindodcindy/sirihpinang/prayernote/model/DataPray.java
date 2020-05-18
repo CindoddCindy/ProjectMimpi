@@ -15,96 +15,76 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
+import cindodcindy.sirihpinang.prayernote.view.PrayListAdapter;
+
 public class DataPray extends SQLiteOpenHelper {
+    private static final int VERSION = 1;
+    private static final String DBNAME = "db_pray";
+    private static final String TABLENAME = "pray";
 
-
-    private static final int DB_VERSION = 2;
-    private static final String DB_NAME = "PrayAppDB";
-    private static final String TABLE_PRAY_NOTES = "tb_pray";
-
-    private static final String KEY_PRAY_NOTE_ID = "id";
-    private static final String KEY_PRAY_NOTE_DATE = "date";
-    private static final String KEY_PRAY_NOTE_CONTENT = "content";
-    private static final String KEY_PRAY_NOTE_DATE_ANSW = "date_answ";
-    private static final String KEY_PRAY_NOTE_CONTENT_ANSW = "content_answ";
-
-
-    public DataPray(Context context) {
-
-        super(context, DB_NAME, null, DB_VERSION);
-
-
-    }
-
-
-
+    private static String colID = "id";
+    private static String colTanggal = "tanggal";
+    private static String colDoa = "doa";
 
 
     public DataPray(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
-    public DataPray(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version, @Nullable DatabaseErrorHandler errorHandler) {
-        super(context, name, factory, version, errorHandler);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.P)
-    public DataPray(@Nullable Context context, @Nullable String name, int version, @NonNull SQLiteDatabase.OpenParams openParams) {
-        super(context, name, version, openParams);
+    public DataPray(Context context) {
+        super(context, DBNAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        String createTable = "CREATE TABLE " + TABLE_PRAY_NOTES + " (" +
-                KEY_PRAY_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_PRAY_NOTE_DATE+ " TEXT," +
-                KEY_PRAY_NOTE_CONTENT + " TEXT," + KEY_PRAY_NOTE_DATE_ANSW + "TEXT," + KEY_PRAY_NOTE_CONTENT_ANSW +
-                "TEXT)";
+        String createTable = "CREATE TABLE " + TABLENAME + " (" +
+                colID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + colTanggal + " TEXT," +
+                colDoa + " TEXT)";
         db.execSQL(createTable);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLE_PRAY_NOTES);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLENAME);
         onCreate(db);
+
     }
 
-
-    public void insertData(String date, String pray, String date_answ, String pray_ans){
-        String insertData = "INSERT INTO "+ TABLE_PRAY_NOTES + " ("+ KEY_PRAY_NOTE_DATE +","+ KEY_PRAY_NOTE_CONTENT +","+ KEY_PRAY_NOTE_DATE_ANSW +" ,"+ KEY_PRAY_NOTE_CONTENT_ANSW +") VALUES ('"+date +"', '"+pray+"','"+date_answ+"','"+pray_ans+"')";
+    public void insertData(String tanggal, String doa){
+        String insertData = "INSERT INTO "+ TABLENAME + " ("+ colTanggal +","+colDoa+") VALUES ('"+tanggal +"', '"+doa+"')";
         this.getWritableDatabase().execSQL(insertData);
     }
 
-    public void updateData(int id, String date, String prays,String date_answ, String pray_answ){
-        String updateData = "UPDATE "+TABLE_PRAY_NOTES+ " SET "+ KEY_PRAY_NOTE_DATE + "= '"+date +"', "+KEY_PRAY_NOTE_CONTENT + "= '"+prays + "',"+KEY_PRAY_NOTE_DATE_ANSW + "= '"+date_answ + "', "+KEY_PRAY_NOTE_CONTENT_ANSW +" = '"+pray_answ+"' WHERE "+KEY_PRAY_NOTE_ID +" ="+id;
+    public void updateData(int id, String tanggal, String doa){
+        String updateData = "UPDATE "+TABLENAME+ " SET "+ colTanggal + "= '"+tanggal +"', "+colDoa + "= '"+doa + "' WHERE "+colID +" ="+id;
         this.getWritableDatabase().execSQL(updateData);
     }
 
     public void deleteData(int id){
-        String deleteData = "DELETE FROM "+TABLE_PRAY_NOTES +" WHERE id="+id;
+        String deleteData = "DELETE FROM "+TABLENAME +" WHERE id="+id;
         this.getWritableDatabase().execSQL(deleteData);
     }
 
     public PrayPojo getData(int id){
         PrayPojo prayPojo = null;
-        String selectData = "SELECT * FROM "+TABLE_PRAY_NOTES + " WHERE id="+String.valueOf(id);
+        String selectData = "SELECT * FROM "+TABLENAME + " WHERE id="+String.valueOf(id);
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
-            prayPojo = new PrayPojo(Integer.parseInt(data.getString(data.getColumnIndex(KEY_PRAY_NOTE_ID))),
-                    data.getString(data.getColumnIndex(KEY_PRAY_NOTE_DATE)), data.getString(data.getColumnIndex(KEY_PRAY_NOTE_CONTENT)),data.getString(data.getColumnIndex(KEY_PRAY_NOTE_DATE_ANSW)),data.getString(data.getColumnIndex(KEY_PRAY_NOTE_CONTENT_ANSW)));
+            prayPojo = new PrayPojo(Integer.parseInt(data.getString(data.getColumnIndex(colID))),
+                    data.getString(data.getColumnIndex(colTanggal)), data.getString(data.getColumnIndex(colDoa)));
         }
         return prayPojo;
     }
 
     public List<PrayPojo> getAll(){
         List<PrayPojo> model = new ArrayList<>();
-        String selectData = "SELECT * FROM "+TABLE_PRAY_NOTES;
+        String selectData = "SELECT * FROM "+TABLENAME;
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
             do{
-                model.add(new PrayPojo(Integer.parseInt(data.getString(data.getColumnIndex(KEY_PRAY_NOTE_ID))),
-                        data.getString(data.getColumnIndex(KEY_PRAY_NOTE_DATE)), data.getString(data.getColumnIndex(KEY_PRAY_NOTE_CONTENT)),data.getString(data.getColumnIndex(KEY_PRAY_NOTE_DATE_ANSW)),data.getString(data.getColumnIndex(KEY_PRAY_NOTE_CONTENT_ANSW))));
+                model.add(new PrayPojo(Integer.parseInt(data.getString(data.getColumnIndex(colID))),
+                        data.getString(data.getColumnIndex(colTanggal)), data.getString(data.getColumnIndex(colDoa))));
             }while (data.moveToNext());
         }
         return model;
