@@ -46,7 +46,7 @@ public class ListDoa extends AppCompatActivity {
         fabAdd=findViewById(R.id.btn_add);
 
         rvList = findViewById(R.id.rv_list);
-        prayListAdapter = new PrayListAdapter(ListDoa.this,prayPojoArrayList,pojoAnswArrayList );
+        prayListAdapter = new PrayListAdapter(ListDoa.this,prayPojoArrayList);
         rvList.setAdapter(prayListAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ListDoa.this);
         rvList.setLayoutManager(linearLayoutManager);
@@ -69,8 +69,8 @@ public class ListDoa extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         prayPojoArrayList = dataPray.getAll();
-        pojoAnswArrayList= dataPrayAnsw.getAllAnsw();
-        prayListAdapter = new PrayListAdapter(this, prayPojoArrayList,pojoAnswArrayList);
+        //pojoAnswArrayList= dataPrayAnsw.getAllAnsw();
+        prayListAdapter = new PrayListAdapter(this, prayPojoArrayList);
         rvList.setAdapter(prayListAdapter);
     }
 }

@@ -9,10 +9,39 @@
     android:gravity="bottom"
     android:background="@drawable/writepray"
     tools:context=".controller.WriteAnsw">
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_get_date_pray"
+        android:background="@color/cardview_shadow_end_color"
+        android:textColor="@color/colorTextBlack"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:hint="Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_get_pray"
+        android:background="@color/cardview_shadow_end_color"
+        android:textColor="@color/colorTextBlack"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:hint="Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
 
     <TextView
         android:gravity="center"
-        android:id="@+id/write_date_answ"
+        android:id="@+id/tv_date_answ"
         android:background="@color/cardview_shadow_end_color"
         android:textColor="@color/colorTextBlack"
         android:textStyle="bold"

@@ -35,22 +35,14 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
 
     private Context context;
     private List<PrayPojo> prayPojoList;
-    private  List<PojoAnsw> pojoAnswsList;
     private DataPray dataPray;
-    private DataPrayAnsw dataPrayAnsw;
 
 
-    public PrayListAdapter(Context context, List<PrayPojo> prayPojoList,List<PojoAnsw> pojoAnswsList) {
+    public PrayListAdapter(Context context, List<PrayPojo> prayPojoList) {
         this.context = context;
         this.prayPojoList=prayPojoList;
-        this.pojoAnswsList=pojoAnswsList;
 
     }
-
-
-
-
-
 
 
     @NonNull
@@ -67,24 +59,29 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     @Override
     public void onBindViewHolder(@NonNull final PrayAdapterChild holder, int position) {
         final PrayPojo prayPojo = prayPojoList.get(position);
-        final PojoAnsw pojoAnsw= pojoAnswsList.get(position);
 
 
         holder.textView_date.setText(prayPojo.getDate());
         holder.textView_pray.setText(prayPojo.getPray());
 
-        holder.textView_date_answ.setText(pojoAnsw.getDate_answ());
-        holder.textView_pray_answ.setText(pojoAnsw.getPray_answ());
 
-        holder.cardView_answ_pr.setOnClickListener(new View.OnClickListener() {
+        holder.textView_write_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("date_pray_answ", pojoAnsw.getDate_answ());
-                bundle.putString("pray_ans",pojoAnsw.getPray_answ());
+                bundle.putString("date_pray", prayPojo.getDate());
+                bundle.putString("pray",prayPojo.getPray());
                 Intent intent = new Intent(context, WriteAnsw.class);
                 intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.cardView_see_ans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,AnswPrayList.class);
                 context.startActivity(intent);
             }
         });
@@ -115,28 +112,8 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             }
         });
 
-        holder.imageView_answ_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Delete ?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dataPrayAnsw.deleteDataAnsw(pojoAnsw.getIdAnsw());
-                        dialogInterface.dismiss();
-                        notifyDataSetChanged();
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
-            }
-        });
+
+
 
         holder.imageView_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,16 +126,6 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             }
         });
 
-        holder.imageView_answ_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditAnsw.class);
-                intent.putExtra("IDAnsw", pojoAnsw.getIdAnsw());
-                context.startActivity(intent);
-
-
-            }
-        });
 
 
 
@@ -173,14 +140,9 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
 
     public class PrayAdapterChild extends RecyclerView.ViewHolder{
 
-        public TextView textView_date, textView_pray;
-        public ImageView imageView_edit, imageView_delete,imageView_answ_edit, imageView_answ_delete;
-        public CardView cardView_pray;
-        public View contentLayout;
-        private TextView txtContent;
-        private CardView cardView_answ_pr;
-        public TextView textView_date_answ, textView_pray_answ;
-
+        public TextView textView_date, textView_pray, textView_write_answ;
+        public ImageView imageView_edit, imageView_delete;
+        public CardView cardView_see_ans;
 
 
         public PrayAdapterChild(@NonNull View itemView) {
@@ -189,17 +151,8 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             textView_pray=itemView.findViewById(R.id.tv_pray);
             imageView_edit=itemView.findViewById(R.id.iv_edit_pray);
             imageView_delete=itemView.findViewById(R.id.iv_delete_pray);
-            cardView_pray=itemView.findViewById(R.id.cv_pray_content);
-            txtContent=itemView.findViewById(R.id.tv_prayer_answered_click);
-            cardView_answ_pr=itemView.findViewById(R.id.cv_answ_pr);
-            imageView_answ_edit=itemView.findViewById(R.id.iv_edit_answ);
-            imageView_answ_delete=itemView.findViewById(R.id.iv_delete_answ);
-
-            textView_date_answ=itemView.findViewById(R.id.tv_date_ans);
-            textView_pray_answ=itemView.findViewById(R.id.tv_answ_pr);
-
-
-
+            textView_write_answ=itemView.findViewById(R.id.tv_prayer_answered_click);
+            cardView_see_ans=itemView.findViewById(R.id.cv_see_list_answ);
 
         }
     }

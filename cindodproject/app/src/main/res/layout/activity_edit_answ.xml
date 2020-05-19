@@ -9,6 +9,35 @@
     android:gravity="bottom"
     android:background="@drawable/edit_answ"
     tools:context=".controller.EditAnsw">
+    <TextView
+        android:gravity="center"
+        android:id="@+id/edit_date_1"
+        android:background="@color/cardview_shadow_end_color"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:hint="Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <TextView
+        android:gravity="center"
+        android:id="@+id/edit_pray_2"
+        android:background="@color/cardview_shadow_end_color"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:textSize="15dp"
+        android:hint="Date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
 
     <TextView
         android:gravity="center"

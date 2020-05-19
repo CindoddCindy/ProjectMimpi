@@ -19,7 +19,7 @@ import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
 
 public class EditAnsw extends AppCompatActivity {
 
-    private TextView textView_edit_date_answ, textView_save_edit_answ;
+    private TextView textView_edit_date_answ, textView_save_edit_answ, textView_date_pr, textView_pr_pr;
     private EditText editText_edit_pray_answ;
     private Calendar calendar;
     private PojoAnsw pojoAnsw;
@@ -33,13 +33,19 @@ public class EditAnsw extends AppCompatActivity {
         editText_edit_pray_answ=findViewById(R.id.write_pray_answ_edit);
         textView_save_edit_answ=findViewById(R.id.save_pray_answ_edit);
 
+        textView_date_pr=findViewById(R.id.edit_date_1);
+        textView_pr_pr=findViewById(R.id.edit_pray_2);
+
         dataPrayAnsw = new DataPrayAnsw(this);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             pojoAnsw = dataPrayAnsw.getDataAnsw(bundle.getInt("IDAnsw"));
             textView_edit_date_answ.setText(pojoAnsw.getDate_answ());
-            editText_edit_pray_answ.setText(pojoAnsw.getPray_answ());
+            editText_edit_pray_answ.setText(pojoAnsw.getAnsw_pray());
+            textView_date_pr.setText(pojoAnsw.getDate_fr_pray());
+            textView_pr_pr.setText(pojoAnsw.getPray_fr_pray());
+
         }
 
         calendar = Calendar.getInstance();
@@ -69,7 +75,7 @@ public class EditAnsw extends AppCompatActivity {
         textView_save_edit_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString());
+                dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString(),textView_date_pr.getText().toString(), textView_pr_pr.getText().toString());
                 finish();
 
 

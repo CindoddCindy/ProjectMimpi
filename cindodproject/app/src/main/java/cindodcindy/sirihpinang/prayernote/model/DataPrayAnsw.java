@@ -11,17 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataPrayAnsw extends SQLiteOpenHelper {
-    private static final int VERSIONANSW = 1;
-    private static final String DBNAMEANSW = "db_pray";
-    private static final String TABLENAMEANSW = "pray";
+    private static final int VERSION = 1;
+    private static final String DBNAME = "db_answer";
+    private static final String TABLENAME = "answer";
 
-    private static String colIDAnsw = "_id";
-    private static String colTanggalAnsw = "tanggalansw";
-    private static String colDoaAnsw = "doaansw";
+    private static String colIDAnsw = "idAnsw";
+    private static String colDateFrPray = "dateFrPray";
+    private static String colPrayFrPray = "isipray";
+    private static String colDateAnsw= "dateAnsw";
+    private static String colPrayAnsw= "isiAnsw";
+
+
 
     public DataPrayAnsw(Context context) {
-        super(context, DBNAMEANSW, null, VERSIONANSW);
+        super(context, DBNAME, null, VERSION);
     }
+
+
 
 
 
@@ -32,9 +38,9 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLENAMEANSW + " (" +
-                colIDAnsw + " INTEGER PRIMARY KEY AUTOINCREMENT, " + colTanggalAnsw + " TEXT," +
-                colDoaAnsw + " TEXT)";
+        String createTable = "CREATE TABLE " + TABLENAME + " (" +
+                colIDAnsw + " INTEGER PRIMARY KEY AUTOINCREMENT, " + colDateFrPray+ " TEXT," + colPrayFrPray + " TEXT, " +
+           colDateAnsw + " TEXT, " + colPrayAnsw + " TEXT)";
         db.execSQL(createTable);
 
 
@@ -42,50 +48,50 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        db.execSQL("DROP TABLE IF EXISTS "+ TABLENAMEANSW);
+        db.execSQL("DROP TABLE IF EXISTS "+ TABLENAME);
         onCreate(db);
 
 
     }
 
-    public void insertDataAnsw(String tanggalAnsw, String doaAnsw){
-        String insertData = "INSERT INTO "+ TABLENAMEANSW + " ("+ colTanggalAnsw +","+colDoaAnsw+") VALUES ('"+tanggalAnsw +"', '"+doaAnsw+"')";
+    public void insertDataAnsw(String datePray, String pray, String dateAnsw, String prayAnsw){
+        String insertData = "INSERT INTO "+ TABLENAME + " ("+ colDateFrPray +","+colPrayFrPray+","+colDateAnsw+","+colPrayAnsw+") VALUES ('"+datePray +"', '"+pray+"','"+dateAnsw+"','"+prayAnsw+"')";
         this.getWritableDatabase().execSQL(insertData);
     }
 
-    public void updateDataAnsw(int id, String tanggalAnsw, String doaAnsw){
-        String updateData = "UPDATE "+TABLENAMEANSW+ " SET "+ colTanggalAnsw + "= '"+tanggalAnsw +"', "+colDoaAnsw + "= '"+doaAnsw + "' WHERE "+colIDAnsw +" ="+id;
+    public void updateDataAnsw(int id, String datePray, String prayFrPray, String dateAnsw, String prayAnsw){
+        String updateData = "UPDATE "+TABLENAME+ " SET "+ colDateFrPray + "= '"+datePray +"', "+colPrayFrPray + "= '"+prayFrPray + "', "+colDateAnsw+"= '"+dateAnsw +"', "+colPrayAnsw+"= '"+prayAnsw+"' WHERE "+colIDAnsw +" ="+id;
         this.getWritableDatabase().execSQL(updateData);
     }
 
     public void deleteDataAnsw(int id){
-        String deleteData = "DELETE FROM "+TABLENAMEANSW +" WHERE id="+id;
+        String deleteData = "DELETE FROM "+TABLENAME +" WHERE id="+id;
         this.getWritableDatabase().execSQL(deleteData);
     }
 
     public PojoAnsw getDataAnsw(int id){
         PojoAnsw pojoAnsw = null;
-        String selectData = "SELECT * FROM "+TABLENAMEANSW + " WHERE id="+String.valueOf(id);
+        String selectData = "SELECT * FROM "+TABLENAME + " WHERE id="+String.valueOf(id);
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
-            pojoAnsw= new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),
-                    data.getString(data.getColumnIndex(colTanggalAnsw)), data.getString(data.getColumnIndex(colDoaAnsw)));
+            pojoAnsw = new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),
+                    data.getString(data.getColumnIndex(colDateFrPray)), data.getString(data.getColumnIndex(colPrayFrPray)),data.getString(data.getColumnIndex(colDateAnsw)),data.getString(data.getColumnIndex(colPrayAnsw)));
         }
         return pojoAnsw;
     }
 
     public List<PojoAnsw> getAllAnsw(){
         List<PojoAnsw> pojoAnsws = new ArrayList<>();
-        String selectData = "SELECT * FROM "+TABLENAMEANSW;
+        String selectData = "SELECT * FROM "+TABLENAME;
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
             do{
                 pojoAnsws.add(new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),
-                        data.getString(data.getColumnIndex(colTanggalAnsw)), data.getString(data.getColumnIndex(colDoaAnsw))));
+                        data.getString(data.getColumnIndex(colDateFrPray)), data.getString(data.getColumnIndex(colPrayFrPray)),data.getString(data.getColumnIndex(colDateAnsw)),data.getString(data.getColumnIndex(colPrayAnsw))));
             }while (data.moveToNext());
         }
         return pojoAnsws;
     }
-
 }
+
+

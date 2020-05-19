@@ -17,6 +17,7 @@ import java.util.Calendar;
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
+import cindodcindy.sirihpinang.prayernote.view.AnswPrayList;
 import cindodcindy.sirihpinang.prayernote.view.ListDoa;
 
 public class WriteAnsw extends AppCompatActivity {
@@ -24,14 +25,12 @@ public class WriteAnsw extends AppCompatActivity {
    public Calendar calendar;
 
     private DataPrayAnsw dataPrayAnsw;
-    private Intent dataIntent;
-    private boolean isEdit = false;
-    private int prayID;
-
 
     private TextView textView_date_answ;
     private  TextView textView_save_pr_answ;
     private EditText editText_pr_answ;
+    private TextView textView_date_dr_pray;
+    private  TextView textView_pray_dr_pray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,29 +41,34 @@ public class WriteAnsw extends AppCompatActivity {
         dataPrayAnsw = new DataPrayAnsw(this);
 
 
-        textView_date_answ=findViewById(R.id.tv_date_ans);
+        textView_date_answ=findViewById(R.id.tv_date_answ);
         editText_pr_answ=findViewById(R.id.write_pray_answ);
         textView_save_pr_answ=findViewById(R.id.tv_pray_answ_save);
 
-        textView_save_pr_answ.setOnClickListener(new View.OnClickListener() {
+        textView_date_dr_pray=findViewById(R.id.tv_get_date_pray);
+        textView_pray_dr_pray=findViewById(R.id.tv_get_pray);
+
+        if(getIntent().getExtras()!=null){
+            /**
+             * Jika Bundle ada, ambil data dari Bundle
+             */
+            Bundle bundle = getIntent().getExtras();
+            textView_date_dr_pray.setText(bundle.getString("date_pray"));
+            textView_pray_dr_pray.setText(bundle.getString("pray"));
+        }
+
+            textView_save_pr_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(getIntent().getExtras()!=null){
-                    /**
-                     * Jika Bundle ada, ambil data dari Bundle
-                     */
-                    Bundle bundle = getIntent().getExtras();
-                    textView_date_answ.setText(bundle.getString("date_pray_answ"));
-                    editText_pr_answ.setText(bundle.getString("pray_ans"));
 
-                    dataPrayAnsw.insertDataAnsw(textView_date_answ.getText().toString(), editText_pr_answ.getText().toString());
-                    Toast.makeText(getApplicationContext(), "Data Tersimpan", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(WriteAnsw.this, ListDoa.class);
+                    dataPrayAnsw.insertDataAnsw(textView_date_dr_pray.getText().toString(), textView_pray_dr_pray.getText().toString(),textView_date_answ.getText().toString(), editText_pr_answ.getText().toString());
+                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(WriteAnsw.this, AnswPrayList.class);
                     startActivity(intent);
                     finish();
 
-                }
+
 
 
             }
