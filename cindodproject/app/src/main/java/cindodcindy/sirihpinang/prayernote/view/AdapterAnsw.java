@@ -86,6 +86,13 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
             }
         });
 
+        holder.cardView_ke_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ListDoa.class);
+                context.startActivity(intent);
+            }
+        });
 
 
     }
@@ -100,6 +107,7 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
         public TextView textView_date_pr, textView_pray_pr, textView_date_answ, textView_pray_answ;
         public ImageView imageView_edit_answ, imageView_del_answ;
         public CardView cardView_list_pr;
+        public  CardView cardView_ke_list;
 
         public ChildAdapterAnsw(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +119,7 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
             imageView_edit_answ=itemView.findViewById(R.id.iv_edit_answ);
             imageView_del_answ=itemView.findViewById(R.id.iv_delete_answ);
             cardView_list_pr=itemView.findViewById(R.id.cv_answ_pr);
+            cardView_ke_list=itemView.findViewById(R.id.cv_go_to_list_1);
         }
     }
 }
