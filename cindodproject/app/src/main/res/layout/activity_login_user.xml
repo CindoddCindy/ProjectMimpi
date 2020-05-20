@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:textColor="@color/colorText"
-            android:hint="Nama"
+            android:hint="Nama Kamu"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:textColor="@color/colorText"
-            android:hint="Passowrd"
+            android:hint="Buat Password"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -48,7 +48,7 @@
         android:textColor="@color/colorText"
         android:background="@color/colorApp"
         android:layout_margin="10dp"
-        android:text="Login">
+        android:text="Oke Lanjut">
 
     </Button>
 

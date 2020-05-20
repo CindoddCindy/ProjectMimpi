@@ -53,7 +53,7 @@
                             android:layout_weight="5"
                             android:padding="2dp"
                             android:gravity="left"
-                            android:text="My Pray"
+                            android:text="Doa ku waktu itu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -132,7 +132,7 @@
                     android:layout_margin="1dp"
                     android:padding="1dp"
                     android:gravity="left"
-                    android:text="Pray Answered"
+                    android:text="Jawaban Doa ku"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

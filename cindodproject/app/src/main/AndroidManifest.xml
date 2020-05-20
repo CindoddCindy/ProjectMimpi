@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.AnswPrayList"></activity>
+        <activity android:name=".controller.InsertPrayAnsw"></activity>
+        <activity android:name=".view.AnswPrayList" />
         <activity android:name=".controller.EditAnsw" />
         <activity android:name=".controller.EditActivity" />
         <activity android:name=".controller.WriteAnsw" />

@@ -53,7 +53,7 @@
                             android:layout_margin="2dp"
                             android:padding="2dp"
                             android:gravity="left"
-                            android:text="My Pray"
+                            android:text="Isi Doa "
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -134,7 +134,7 @@
                     android:layout_margin="5dp"
                     android:padding="2dp"
                     android:gravity="left"
-                    android:text=" Write Prayer Answered"
+                    android:text=" Tulis Jawaban Doa "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
