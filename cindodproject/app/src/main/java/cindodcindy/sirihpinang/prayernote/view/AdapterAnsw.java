@@ -18,6 +18,7 @@ import java.util.List;
 
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.controller.EditActivity;
+import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
 
@@ -42,8 +43,9 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChildAdapterAnsw holder, int position) {
+    public void onBindViewHolder(@NonNull final ChildAdapterAnsw holder, final int position) {
         final PojoAnsw pojoAnsw=pojoAnswList.get(position);
+
 
         holder.textView_date_pr.setText(pojoAnsw.getDate_fr_pray());
         holder.textView_pray_pr.setText(pojoAnsw.getPray_fr_pray());
@@ -69,8 +71,10 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final DataPrayAnsw dataPrayAnsw = new DataPrayAnsw(context);
                         dataPrayAnsw.deleteDataAnsw(pojoAnsw.getIdAnsw());
                         dialogInterface.dismiss();
+                        pojoAnswList.remove(position);
                         notifyDataSetChanged();
                     }
                 });

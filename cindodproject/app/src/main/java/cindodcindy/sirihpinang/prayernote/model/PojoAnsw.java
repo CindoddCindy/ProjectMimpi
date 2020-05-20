@@ -2,11 +2,11 @@ package cindodcindy.sirihpinang.prayernote.model;
 
 public class PojoAnsw {
 
-   public int idAnsw;
-   public String date_fr_pray;
-   public String pray_fr_pray;
-   public String date_answ;
-   public String answ_pray;
+   private int idAnsw;
+   private String date_fr_pray;
+   private String pray_fr_pray;
+   private String date_answ;
+   private String answ_pray;
 
 
    public PojoAnsw(int idAnsw, String date_fr_pray, String pray_fr_pray, String date_answ, String answ_pray){

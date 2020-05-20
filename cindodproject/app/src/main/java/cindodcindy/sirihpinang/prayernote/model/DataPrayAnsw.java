@@ -11,21 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataPrayAnsw extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
-    private static final String DBNAME = "db_answer";
+    private static final int VERSIONANSW = 3;
+    private static final String DBNAMEANSW = "db_answer";
     private static final String TABLENAME = "answer";
 
-    private static String colIDAnsw = "idAnsw";
-    private static String colDateFrPray = "dateFrPray";
-    private static String colPrayFrPray = "isipray";
-    private static String colDateAnsw= "dateAnsw";
-    private static String colPrayAnsw= "isiAnsw";
-
-
+    private static String colIDAnsw = "id_answ";
+    private static String colTanggalPr = "tanggal_pr";
+    private static String colDoaPr = "doa_pr";
+    private static String colTanggalAnsw = "tanggal_answ";
+    private static String colDoaPrAnsw = "doa_answ";
 
     public DataPrayAnsw(Context context) {
-        super(context, DBNAME, null, VERSION);
+        super(context, DBNAMEANSW, null, VERSIONANSW);
     }
+
+
+
 
 
 
@@ -39,9 +40,10 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLENAME + " (" +
-                colIDAnsw + " INTEGER PRIMARY KEY AUTOINCREMENT, " + colDateFrPray+ " TEXT," + colPrayFrPray + " TEXT, " +
-           colDateAnsw + " TEXT, " + colPrayAnsw + " TEXT)";
+                colIDAnsw + " INTEGER PRIMARY KEY AUTOINCREMENT, " + colTanggalPr + " TEXT," + colDoaPr + " TEXT, " + colTanggalAnsw + " TEXT, " +
+                colDoaPrAnsw + " TEXT)";
         db.execSQL(createTable);
+
 
 
     }
@@ -52,20 +54,22 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
         onCreate(db);
 
 
+
     }
 
-    public void insertDataAnsw(String datePray, String pray, String dateAnsw, String prayAnsw){
-        String insertData = "INSERT INTO "+ TABLENAME + " ("+ colDateFrPray +","+colPrayFrPray+","+colDateAnsw+","+colPrayAnsw+") VALUES ('"+datePray +"', '"+pray+"','"+dateAnsw+"','"+prayAnsw+"')";
+
+    public void insertDataAnsw(String tanggal, String doa, String tanggalAnsw, String prayAnsw){
+        String insertData = "INSERT INTO "+ TABLENAME + " ("+ colTanggalPr +","+colDoaPr+","+colTanggalAnsw+","+colDoaPrAnsw+") VALUES ('"+tanggal +"', '"+doa+"','"+tanggalAnsw+"','"+prayAnsw+"')";
         this.getWritableDatabase().execSQL(insertData);
     }
 
-    public void updateDataAnsw(int id, String datePray, String prayFrPray, String dateAnsw, String prayAnsw){
-        String updateData = "UPDATE "+TABLENAME+ " SET "+ colDateFrPray + "= '"+datePray +"', "+colPrayFrPray + "= '"+prayFrPray + "', "+colDateAnsw+"= '"+dateAnsw +"', "+colPrayAnsw+"= '"+prayAnsw+"' WHERE "+colIDAnsw +" ="+id;
+    public void updateDataAnsw(int id, String tanggal, String doa, String tanggal_answ, String doa_answ){
+        String updateData = "UPDATE "+TABLENAME+ " SET "+ colTanggalPr + "= '"+tanggal +"', "+colDoaPr + "= '"+doa + "',"+colTanggalAnsw+ "='"+tanggal_answ+"',"+colDoaPrAnsw+"='"+doa_answ+"' WHERE "+colIDAnsw +" ="+id;
         this.getWritableDatabase().execSQL(updateData);
     }
 
     public void deleteDataAnsw(int id){
-        String deleteData = "DELETE FROM "+TABLENAME +" WHERE id="+id;
+        String deleteData = "DELETE FROM "+TABLENAME +" WHERE id_answ="+id;
         this.getWritableDatabase().execSQL(deleteData);
     }
 
@@ -75,7 +79,7 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
             pojoAnsw = new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),
-                    data.getString(data.getColumnIndex(colDateFrPray)), data.getString(data.getColumnIndex(colPrayFrPray)),data.getString(data.getColumnIndex(colDateAnsw)),data.getString(data.getColumnIndex(colPrayAnsw)));
+                    data.getString(data.getColumnIndex(colTanggalPr)), data.getString(data.getColumnIndex(colDoaPr)),data.getString(data.getColumnIndex(colTanggalAnsw)),data.getString(data.getColumnIndex(colDoaPrAnsw)));
         }
         return pojoAnsw;
     }
@@ -87,11 +91,12 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
         if(data.moveToFirst()){
             do{
                 pojoAnsws.add(new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),
-                        data.getString(data.getColumnIndex(colDateFrPray)), data.getString(data.getColumnIndex(colPrayFrPray)),data.getString(data.getColumnIndex(colDateAnsw)),data.getString(data.getColumnIndex(colPrayAnsw))));
+                        data.getString(data.getColumnIndex(colTanggalPr)), data.getString(data.getColumnIndex(colDoaPr)),data.getString(data.getColumnIndex(colTanggalAnsw)),data.getString(data.getColumnIndex(colDoaPrAnsw))));
             }while (data.moveToNext());
         }
         return pojoAnsws;
     }
+
 }
 
 

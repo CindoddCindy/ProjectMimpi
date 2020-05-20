@@ -57,7 +57,7 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final PrayAdapterChild holder, int position) {
+    public void onBindViewHolder(@NonNull final PrayAdapterChild holder, final int position) {
         final PrayPojo prayPojo = prayPojoList.get(position);
 
 
@@ -90,14 +90,15 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
             @Override
             public void onClick(View v) {
 
-
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Delete ?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        final DataPray dataPray = new DataPray(context);
                         dataPray.deleteData(prayPojo.getPrayId());
                         dialogInterface.dismiss();
+                        prayPojoList.remove(position);
                         notifyDataSetChanged();
                     }
                 });
