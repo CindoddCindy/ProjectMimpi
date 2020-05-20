@@ -41,12 +41,26 @@ public class EditAnsw extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             pojoAnsw = dataPrayAnsw.getDataAnsw(bundle.getInt("IDAnsw"));
-            textView_edit_date_answ.setText(pojoAnsw.getDate_answ());
-            editText_edit_pray_answ.setText(pojoAnsw.getAnsw_pray());
             textView_date_pr.setText(pojoAnsw.getDate_fr_pray());
             textView_pr_pr.setText(pojoAnsw.getPray_fr_pray());
+            textView_edit_date_answ.setText(pojoAnsw.getDate_answ());
+            editText_edit_pray_answ.setText(pojoAnsw.getAnsw_pray());
 
         }
+
+ /*
+
+        if(getIntent().getExtras()!=null){
+            Bundle bundle = getIntent().getExtras();
+            pojoAnsw=dataPrayAnsw.getDataAnsw(bundle.getInt("IdAnsw"));
+            textView_date_pr.setText(bundle.getString("date_1"));
+            textView_pr_pr.setText(bundle.getString("pray_1"));
+            textView_edit_date_answ.setText(bundle.getString("date_answ"));
+            editText_edit_pray_answ.setText(bundle.getString("pray_answ"));
+        }
+
+ */
+
 
         calendar = Calendar.getInstance();
 
@@ -72,11 +86,16 @@ public class EditAnsw extends AppCompatActivity {
             }
         });
 
+
+
         textView_save_edit_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString(),textView_date_pr.getText().toString(), textView_pr_pr.getText().toString());
-                finish();
+                    dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(),textView_date_pr.getText().toString(), textView_pr_pr.getText().toString(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString());
+                    finish();
+
+
+
 
 
             }

@@ -75,7 +75,7 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
 
     public PojoAnsw getDataAnsw(int id){
         PojoAnsw pojoAnsw = null;
-        String selectData = "SELECT * FROM "+TABLENAME + " WHERE id="+String.valueOf(id);
+        String selectData = "SELECT * FROM "+TABLENAME + " WHERE id_answ="+String.valueOf(id);
         Cursor data = this.getWritableDatabase().rawQuery(selectData, null);
         if(data.moveToFirst()){
             pojoAnsw = new PojoAnsw(Integer.parseInt(data.getString(data.getColumnIndex(colIDAnsw))),

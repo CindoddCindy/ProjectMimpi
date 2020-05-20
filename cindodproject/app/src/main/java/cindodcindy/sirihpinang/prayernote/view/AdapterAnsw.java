@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import java.util.List;
 
 import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.controller.EditActivity;
+import cindodcindy.sirihpinang.prayernote.controller.EditAnsw;
+import cindodcindy.sirihpinang.prayernote.controller.WriteAnsw;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
@@ -55,9 +58,24 @@ public class AdapterAnsw extends RecyclerView.Adapter<AdapterAnsw.ChildAdapterAn
         holder.imageView_edit_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditActivity.class);
+                Intent intent = new Intent(context, EditAnsw.class);
                 intent.putExtra("IDAnsw", pojoAnsw.getIdAnsw());
                 context.startActivity(intent);
+
+
+
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putString("IdAnsw", String.valueOf(pojoAnsw.getIdAnsw()));
+                bundle.putString("date_1", pojoAnsw.getDate_fr_pray());
+                bundle.putString("pray_1",pojoAnsw.getPray_fr_pray());
+                bundle.putString("date_answ",pojoAnsw.getDate_answ());
+                bundle.putString("pray_answ",pojoAnsw.getAnsw_pray());
+                Intent intent = new Intent(context, EditAnsw.class);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+
+                 */
 
 
             }
