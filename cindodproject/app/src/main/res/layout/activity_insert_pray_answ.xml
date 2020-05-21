@@ -11,6 +11,7 @@
     tools:context=".controller.InsertPrayAnsw">
 
     <TextView
+        android:id="@+id/tv_tgl_doa_insert"
         android:padding="5dp"
         android:layout_margin="5dp"
         android:textColor="@color/colorTextBlack"
@@ -25,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/et_doa_insert"
             android:padding="10dp"
             android:layout_margin="5dp"
             android:textColor="@color/colorTextBlack"
@@ -41,6 +43,7 @@
 
     <TextView
         android:padding="5dp"
+        android:id="@+id/tv_tanggal_answ_insert"
         android:layout_margin="5dp"
         android:textColor="@color/colorTextBlack"
         android:gravity="center"
@@ -55,6 +58,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:padding="10dp"
+            android:id="@+id/et_answ_insert"
             android:layout_margin="5dp"
             android:textColor="@color/colorTextBlack"
             android:gravity="center"
