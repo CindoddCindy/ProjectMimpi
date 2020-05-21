@@ -17,7 +17,7 @@ public class PrayPojo {
         this.date=date;
         this.pray=pray;
     }
-
+public PrayPojo(){}
 
 
     public int getPrayId() {

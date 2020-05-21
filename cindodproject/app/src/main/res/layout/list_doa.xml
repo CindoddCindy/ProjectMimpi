@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_go_to_answ"
+            android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+            android:layout_margin="1dp"
+            android:padding="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
         <androidx.cardview.widget.CardView
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
@@ -37,7 +46,7 @@
                         android:textStyle="bold"
                         android:textSize="12dp"
                         android:text=" List Doa "
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:gravity="center"
                         android:padding="2dp"
                         android:layout_width="match_parent"
@@ -51,7 +60,7 @@
                         android:textStyle="bold"
                         android:textSize="12dp"
                         android:text="User Name"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -73,7 +82,7 @@
                         android:textStyle="bold"
                         android:textSize="12dp"
                         android:text="Password"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -82,10 +91,10 @@
 
                     <ToggleButton
                         android:background="@color/cardview_shadow_end_color"
-                        android:layout_margin="3dp"
+                        android:layout_margin="2dp"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="20dp">
 
                     </ToggleButton>
 
@@ -140,7 +149,7 @@
             android:layout_margin="1dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -149,9 +158,10 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.SearchView
-                    android:layout_margin="1dp"
+                    android:id="@+id/sv_list_pr"
+                    android:layout_margin="2dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="30dp">
 
                 </androidx.appcompat.widget.SearchView>
 
@@ -170,7 +180,7 @@
             android:layout_margin="2dp"
             android:layout_gravity="right"
             android:gravity="right"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <com.google.android.material.floatingactionbutton.FloatingActionButton

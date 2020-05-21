@@ -90,6 +90,29 @@ public class DataPray extends SQLiteOpenHelper {
         return model;
     }
 
+
+    public List<PrayPojo> search(String keyword) {
+        List<PrayPojo> prayPojos = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLENAME + " where " + colDoa + " like ?", new String[] { "%" + keyword + "%" });
+            if (cursor.moveToFirst()) {
+                prayPojos = new ArrayList<PrayPojo>();
+                do {
+                    PrayPojo prayPojo = new PrayPojo();
+                    prayPojo.setPrayId(cursor.getInt(0));
+                    prayPojo.setDate(cursor.getString(1));
+                    prayPojo.setPray(cursor.getString(2));
+                    prayPojos.add(prayPojo);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            prayPojos = null;
+        }
+        return prayPojos;
+    }
+
+
 }
 
 

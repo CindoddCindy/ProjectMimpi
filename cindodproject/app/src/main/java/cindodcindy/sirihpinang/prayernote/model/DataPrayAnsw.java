@@ -97,6 +97,31 @@ public class DataPrayAnsw extends SQLiteOpenHelper {
         return pojoAnsws;
     }
 
+    public List<PojoAnsw> searchAns(String keyword) {
+        List<PojoAnsw> pojoAnsws = null;
+        try {
+            SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("select * from " + TABLENAME + " where " + colDoaPrAnsw + " like ?", new String[] { "%" + keyword + "%" });
+            if (cursor.moveToFirst()) {
+                pojoAnsws = new ArrayList<PojoAnsw>();
+                do {
+                    PojoAnsw pojoAnsw= new PojoAnsw();
+                    pojoAnsw.setIdAnsw(cursor.getInt(0));
+                    pojoAnsw.setDate_fr_pray(cursor.getString(1));
+                    pojoAnsw.setPray_fr_pray(cursor.getString(2));
+                    pojoAnsw.setDate_answ(cursor.getString(3));
+                    pojoAnsw.setAnsw_pray(cursor.getString(4));
+                    pojoAnsws.add(pojoAnsw);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            pojoAnsws = null;
+        }
+        return pojoAnsws;
+    }
+
+
+
 }
 
 

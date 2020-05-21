@@ -1,6 +1,7 @@
 package cindodcindy.sirihpinang.prayernote.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ public class ListDoa extends AppCompatActivity {
     private PrayListAdapter prayListAdapter;
     private List<PrayPojo> prayPojoArrayList = new ArrayList<>();
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
+    private SearchView searchView;
 
 
 
@@ -61,8 +63,30 @@ public class ListDoa extends AppCompatActivity {
                  }
         });
 
+        searchView=findViewById(R.id.sv_list_pr);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchPray(query);
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchPray(newText);
+                return false;
+            }
+        });
+
+    }
+
+    private void searchPray(String keyword) {
+        DataPray dataPray = new DataPray(getApplicationContext());
+        List<PrayPojo> prayPojos = dataPray.search(keyword);
+        if (prayPojos != null) {
+            rvList.setAdapter(new PrayListAdapter(getApplicationContext(), prayPojos));
+        }
     }
 
     @Override

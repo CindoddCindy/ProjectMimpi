@@ -8,6 +8,8 @@ public class PojoAnsw {
    private String date_answ;
    private String answ_pray;
 
+   public PojoAnsw(){}
+
 
    public PojoAnsw(int idAnsw, String date_fr_pray, String pray_fr_pray, String date_answ, String answ_pray){
        this.idAnsw=idAnsw;

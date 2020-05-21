@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,6 +29,7 @@ public class AnswPrayList extends AppCompatActivity {
     private AdapterAnsw adapterAnsw;
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
     private FloatingActionButton floatingActionButton_answ;
+    private SearchView searchView_answ;
 
 
 
@@ -56,6 +58,30 @@ public class AnswPrayList extends AppCompatActivity {
             }
         });
 
+        searchView_answ=findViewById(R.id.sv_answ);
+
+        searchView_answ.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchAnswPr(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchAnswPr(newText);
+                return false;
+            }
+        });
+
+    }
+
+    private void searchAnswPr(String keyword) {
+        DataPrayAnsw dataPrayAnsw = new DataPrayAnsw(getApplicationContext());
+        List<PojoAnsw> contacts = dataPrayAnsw.searchAns(keyword);
+        if (contacts != null) {
+            rvAnsw.setAdapter(new AdapterAnsw(getApplicationContext(), contacts));
+        }
     }
 
     @Override

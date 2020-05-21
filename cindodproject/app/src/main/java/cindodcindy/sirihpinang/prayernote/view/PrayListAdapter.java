@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -128,11 +129,13 @@ public class PrayListAdapter extends RecyclerView.Adapter<PrayListAdapter.PrayAd
         });
 
 
-
-
-
-
     }
+
+
+// nambah search
+
+
+
 
     @Override
     public int getItemCount() {
