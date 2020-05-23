@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import static cindodcindy.sirihpinang.prayernote.controller.auth.PreferencesUtility.LOGGED_IN_PREF;
 
 public class SaveSharedPreference {
+
+    SharedPreferences sharedpreferences;
     static SharedPreferences getPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -30,4 +32,7 @@ public class SaveSharedPreference {
     public static boolean getLoggedStatus(Context context) {
         return getPreferences(context).getBoolean(LOGGED_IN_PREF, false);
     }
+
+
+
 }
