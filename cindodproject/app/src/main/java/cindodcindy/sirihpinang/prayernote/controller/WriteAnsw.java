@@ -31,6 +31,7 @@ public class WriteAnsw extends AppCompatActivity {
     private EditText editText_pr_answ;
     private TextView textView_date_dr_pray;
     private  TextView textView_pray_dr_pray;
+    private  TextView textView_batal_answ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,7 @@ public class WriteAnsw extends AppCompatActivity {
 
         textView_date_dr_pray=findViewById(R.id.tv_get_date_pray);
         textView_pray_dr_pray=findViewById(R.id.tv_get_pray);
+        textView_batal_answ=findViewById(R.id.tv_answ_batal_save);
 
         if(getIntent().getExtras()!=null){
             /**
@@ -96,6 +98,15 @@ public class WriteAnsw extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        textView_batal_answ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(WriteAnsw.this,AnswPrayList.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -24,7 +25,7 @@ import cindodcindy.sirihpinang.prayernote.model.PrayPojo;
 public class AnswPrayList extends AppCompatActivity {
     private RecyclerView rvAnsw;
 
-
+    private TextView textView_doa_ls;
     private DataPrayAnsw dataPrayAnsw;
     private AdapterAnsw adapterAnsw;
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
@@ -40,7 +41,18 @@ public class AnswPrayList extends AppCompatActivity {
 
         dataPrayAnsw=new DataPrayAnsw(this);
         floatingActionButton_answ=findViewById(R.id.btn_add_answer);
+        textView_doa_ls=findViewById(R.id.tv_ls_doa_dijawab_profile);
 
+        textView_doa_ls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent = new Intent(AnswPrayList.this, ExpandLayout.class);
+              startActivity(intent);
+              finish();
+            }
+
+
+        });
 
 
 

@@ -63,7 +63,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/batal_save_pray"
+        android:id="@+id/tv_batal_save_pray"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="10dp"

@@ -92,7 +92,7 @@
     </TextView>
 
     <TextView
-        android:id="@+id/batal_pray_answ_edit"
+        android:id="@+id/tv_batal_pray_answ_edit"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:padding="10dp"

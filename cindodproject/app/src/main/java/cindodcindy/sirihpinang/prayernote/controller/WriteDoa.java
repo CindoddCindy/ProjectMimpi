@@ -28,6 +28,7 @@ public class WriteDoa extends AppCompatActivity {
     TextView textView_write_date, textView_save_write;
 
     Calendar calendar;
+    public TextView textView_gajadi_save;
 
     private  DataPray dataPray;
     private Intent dataIntent;
@@ -41,6 +42,7 @@ public class WriteDoa extends AppCompatActivity {
         textView_write_date = findViewById(R.id.write_date);
         textView_write_pray = findViewById(R.id.write_pray);
         textView_save_write = findViewById(R.id.save_pray);
+        textView_gajadi_save=findViewById(R.id.tv_batal_save_pray);
 
         calendar = Calendar.getInstance();
 
@@ -79,6 +81,15 @@ public class WriteDoa extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
+            }
+        });
+
+        textView_gajadi_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WriteDoa.this,ListDoa.class);
+                startActivity(intent);
+                finish();
             }
         });
 

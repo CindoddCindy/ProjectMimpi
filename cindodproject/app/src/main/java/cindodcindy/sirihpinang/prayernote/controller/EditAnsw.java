@@ -3,6 +3,7 @@ package cindodcindy.sirihpinang.prayernote.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -16,6 +17,7 @@ import cindodcindy.sirihpinang.prayernote.R;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
+import cindodcindy.sirihpinang.prayernote.view.AnswPrayList;
 
 public class EditAnsw extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class EditAnsw extends AppCompatActivity {
     private Calendar calendar;
     private PojoAnsw pojoAnsw;
     private DataPrayAnsw dataPrayAnsw;
+    private TextView textView_batal_edit_answ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class EditAnsw extends AppCompatActivity {
 
         textView_date_pr=findViewById(R.id.edit_date_1);
         textView_pr_pr=findViewById(R.id.edit_pray_2);
+        textView_batal_edit_answ=findViewById(R.id.tv_batal_pray_answ_edit);
 
         dataPrayAnsw = new DataPrayAnsw(this);
 
@@ -98,6 +102,15 @@ public class EditAnsw extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        textView_batal_edit_answ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditAnsw.this, AnswPrayList.class);
+                startActivity(intent);
+                finish();
             }
         });
 

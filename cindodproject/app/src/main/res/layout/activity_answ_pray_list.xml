@@ -56,32 +56,20 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_ls_doa_dijawab_profile"
                                 android:layout_weight="1"
+                                android:drawableRight="@drawable/ic_person_black_24dp"
                                 android:textColor="@color/colorTextBlack"
                                 android:textStyle="bold"
                                 android:textSize="12dp"
                                 android:text=" List Doa Yang Dijawab"
                                 android:layout_margin="3dp"
-                                android:gravity="center"
+                                android:gravity="left"
                                 android:padding="2dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
                             </TextView>
-                            <TextView
-                                android:gravity="center"
-                                android:layout_weight="1"
-                                android:textColor="@color/colorTextBlack"
-                                android:textStyle="bold"
-                                android:textSize="12dp"
-                                android:text="User Name"
-                                android:layout_margin="3dp"
-                                android:padding="2dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                            </TextView>
-
 
                         </LinearLayout>
 
