@@ -37,6 +37,7 @@ public class ListDoa extends AppCompatActivity {
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
     private SearchView searchView;
     private TextView textView_go_to_profile;
+    private TextView textView_to_ans;
 
 
     @Override
@@ -47,6 +48,7 @@ public class ListDoa extends AppCompatActivity {
 
 
         textView_go_to_profile=findViewById(R.id.ge_to_profile);
+        textView_to_ans=findViewById(R.id.tv_go_to_answ);
         dataPray = new DataPray(this);
         dataPrayAnsw=new DataPrayAnsw(this);
 
@@ -88,6 +90,15 @@ public class ListDoa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ListDoa.this,ExpandLayout.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        textView_to_ans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListDoa.this,AnswPrayList.class);
                 startActivity(intent);
                 finish();
             }

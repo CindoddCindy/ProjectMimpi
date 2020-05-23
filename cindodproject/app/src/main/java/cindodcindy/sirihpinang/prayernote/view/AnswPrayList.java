@@ -26,6 +26,7 @@ public class AnswPrayList extends AppCompatActivity {
     private RecyclerView rvAnsw;
 
     private TextView textView_doa_ls;
+    private TextView textView_to_pr;
     private DataPrayAnsw dataPrayAnsw;
     private AdapterAnsw adapterAnsw;
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
@@ -42,6 +43,7 @@ public class AnswPrayList extends AppCompatActivity {
         dataPrayAnsw=new DataPrayAnsw(this);
         floatingActionButton_answ=findViewById(R.id.btn_add_answer);
         textView_doa_ls=findViewById(R.id.tv_ls_doa_dijawab_profile);
+        textView_to_pr=findViewById(R.id.tv_back_to_pr);
 
         textView_doa_ls.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,16 @@ public class AnswPrayList extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 searchAnswPr(newText);
                 return false;
+            }
+        });
+
+        textView_to_pr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(AnswPrayList.this, ListDoa.class);
+                startActivity(intent);
+                finish();
+
             }
         });
 

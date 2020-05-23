@@ -11,7 +11,7 @@
     tools:context=".controller.InsertPrayAnsw">
 
     <TextView
-        android:id="@+id/tv_tgl_doa_insert"
+        android:id="@+id/Answ_tv_1_insert"
         android:padding="5dp"
         android:layout_margin="5dp"
         android:textColor="@color/colorTextBlack"
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/et_doa_insert"
+            android:id="@+id/Answ_et_1_insert"
             android:padding="10dp"
             android:layout_margin="5dp"
             android:textColor="@color/colorTextBlack"
@@ -43,7 +43,7 @@
 
     <TextView
         android:padding="5dp"
-        android:id="@+id/tv_tanggal_answ_insert"
+        android:id="@+id/Answ_tv_2_insert"
         android:layout_margin="5dp"
         android:textColor="@color/colorTextBlack"
         android:gravity="center"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:padding="10dp"
-            android:id="@+id/et_answ_insert"
+            android:id="@+id/Answ_et_2_insert"
             android:layout_margin="5dp"
             android:textColor="@color/colorTextBlack"
             android:gravity="center"
@@ -74,7 +74,7 @@
 
     <Button
         android:text="Simpan"
-        android:id="@+id/btn_save_answ_insert"
+        android:id="@+id/Answ_btn_save_answ_insert"
         android:textColor="@color/colorText"
         android:background="@color/colorApp"
         android:layout_marginTop="10dp"
@@ -86,7 +86,7 @@
 
     <Button
         android:text="Batal"
-        android:id="@+id/btn_batal_answ_insert"
+        android:id="@+id/Answ_btn_batal_answ_insert"
         android:textColor="@color/colorText"
         android:background="@color/colorApp"
         android:layout_marginTop="10dp"
