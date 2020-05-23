@@ -5,85 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="bottom"
-    android:gravity="bottom"
-    android:background="@drawable/splash_screen"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/spalshscreen"
     tools:context=".MainActivity">
-
-    <TextView
-        android:padding="10dp"
+    <LinearLayout
         android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="50dp"
-        android:layout_margin="10dp"
-        android:text="Note"
-        android:textColor="@color/colorText">
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="50dp"
+            android:layout_margin="10dp"
+            android:text="Pray Note"
+            android:textColor="@color/colorText">
 
-    </TextView>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText">
-
-    </TextView>
+        </TextView>
+    </LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText">
+    <LinearLayout
+          android:layout_weight="1"
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:orientation="vertical"
+          android:layout_gravity="bottom"
+          android:gravity="bottom">
 
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textStyle="bold"
+              android:textSize="12dp"
+              android:padding="5dp"
+              android:layout_margin="1dp"
+              android:gravity="center"
+              android:text="pray note 0.2 release cindodcindy"
+              android:textColor="@color/colorTextBlack">
 
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText">
+          </TextView>
 
-    </TextView>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textColor="@color/colorText">
+      </LinearLayout>
 
-    </TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="10dp"
-        android:padding="1dp"
-        android:layout_margin="1dp"
-        android:gravity="center"
-        android:text="pray note 0.2 release cindodcindy"
-        android:textColor="@color/colorText">
 
-    </TextView>
+
+
+
 
 
 

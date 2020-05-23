@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -15,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cindodcindy.sirihpinang.prayernote.R;
+import cindodcindy.sirihpinang.prayernote.controller.LoginUser;
 import cindodcindy.sirihpinang.prayernote.controller.WriteDoa;
+import cindodcindy.sirihpinang.prayernote.controller.auth.SaveSharedPreference;
 import cindodcindy.sirihpinang.prayernote.model.DataPray;
 import cindodcindy.sirihpinang.prayernote.model.DataPrayAnsw;
 import cindodcindy.sirihpinang.prayernote.model.PojoAnsw;
@@ -33,6 +36,7 @@ public class ListDoa extends AppCompatActivity {
     private List<PrayPojo> prayPojoArrayList = new ArrayList<>();
     private List<PojoAnsw> pojoAnswArrayList = new ArrayList<>();
     private SearchView searchView;
+    private TextView textView_user_name, textView_passowrd,textView_logout;
 
 
 
@@ -41,6 +45,23 @@ public class ListDoa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_doa);
+
+        textView_user_name=findViewById(R.id.tv_user_name_list_doa);
+        textView_passowrd=findViewById(R.id.tv_pass_list_doa);
+        textView_logout=findViewById(R.id.tv_logout);
+
+
+
+        if(getIntent().getExtras()!=null){
+            /**
+             * Jika Bundle ada, ambil data dari Bundle
+             */
+            Bundle bundle = getIntent().getExtras();
+            textView_user_name.setText(bundle.getString("data1"));
+            textView_passowrd.setText(bundle.getString("data2"));
+        }
+
+
 
         dataPray = new DataPray(this);
         dataPrayAnsw=new DataPrayAnsw(this);
@@ -87,6 +108,17 @@ public class ListDoa extends AppCompatActivity {
         if (prayPojos != null) {
             rvList.setAdapter(new PrayListAdapter(getApplicationContext(), prayPojos));
         }
+
+        textView_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveSharedPreference.setLoggedIn(getApplicationContext(), false);
+                Intent intent = new Intent(getApplicationContext(), LoginUser.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

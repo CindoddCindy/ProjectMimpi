@@ -62,5 +62,20 @@
 
     </TextView>
 
+    <TextView
+        android:id="@+id/batal_save_pray"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/colorText"
+        android:text="Batal"
+        android:background="@color/colorApp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+
 
 </LinearLayout>

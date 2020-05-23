@@ -92,4 +92,19 @@
 
     </TextView>
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/colorText"
+        android:id="@+id/tv_pray_answ_batal"
+        android:text="Batal"
+        android:background="@color/colorApp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+
 </LinearLayout>

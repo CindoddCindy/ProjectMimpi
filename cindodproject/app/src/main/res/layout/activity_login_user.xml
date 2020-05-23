@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/et_nama"
             android:textColor="@color/colorText"
             android:hint="Nama Kamu"
             android:layout_margin="10dp"
@@ -31,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
+            android:id="@+id/et_password"
             android:textColor="@color/colorText"
             android:hint="Buat Password"
             android:layout_margin="10dp"
