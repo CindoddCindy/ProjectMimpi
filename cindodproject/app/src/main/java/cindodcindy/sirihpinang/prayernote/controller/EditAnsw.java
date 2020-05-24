@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -95,8 +96,23 @@ public class EditAnsw extends AppCompatActivity {
         textView_save_edit_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(),textView_date_pr.getText().toString(), textView_pr_pr.getText().toString(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString());
-                    finish();
+                    String tanggal =textView_date_pr.getText().toString();
+                    String doa = textView_pr_pr.getText().toString();
+                    String tanggal_2=textView_edit_date_answ.getText().toString();
+                    String doa_2=editText_edit_pray_answ.getText().toString();
+                    if (TextUtils.isEmpty(tanggal)){
+                        textView_date_pr.setError("tanggal Kosong");
+                    }
+                    else if(TextUtils.isEmpty(doa)){
+                        textView_pr_pr.setError("Doa Kosong");
+                    }else if(TextUtils.isEmpty(tanggal_2)){
+                        textView_edit_date_answ.setError("Tanggal Doa Dijawab Kosong");
+                    }else  if(TextUtils.isEmpty(doa_2)){
+                        editText_edit_pray_answ.setError("Doa Dijawab Kosong");
+                    }else {
+                        dataPrayAnsw.updateDataAnsw(pojoAnsw.getIdAnsw(), textView_date_pr.getText().toString(), textView_pr_pr.getText().toString(), textView_edit_date_answ.getText().toString(), editText_edit_pray_answ.getText().toString());
+                        finish();
+                    }
 
 
 

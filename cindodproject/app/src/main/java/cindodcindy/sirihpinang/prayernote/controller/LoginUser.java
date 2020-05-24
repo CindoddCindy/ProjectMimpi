@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,14 +59,21 @@ public class LoginUser extends AppCompatActivity {
             public void onClick(View v) {
                 String n = editText_nama.getText().toString();
                 String e = editText_password.getText().toString();
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putString(Name, n);
-                editor.putString(Email, e);
-                editor.commit();
-                String name=editText_nama.getText().toString();
-                String password = editText_password.getText().toString();
-                userLogin(name,password);
+                if(TextUtils.isEmpty(n)){
+                    editText_nama.setError("Nama Kosong");
 
+                }else if(TextUtils.isEmpty(e)){
+                    editText_password.setError("Password Kosong");
+                }
+                else {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(Name, n);
+                    editor.putString(Email, e);
+                    editor.commit();
+                    String name = editText_nama.getText().toString();
+                    String password = editText_password.getText().toString();
+                    userLogin(name, password);
+                }
 
             }
         });
@@ -83,4 +91,5 @@ public class LoginUser extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }

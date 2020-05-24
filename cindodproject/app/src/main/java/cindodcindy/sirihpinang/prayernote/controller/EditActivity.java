@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -73,8 +76,16 @@ public class EditActivity extends AppCompatActivity {
         textView_btn_edit_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataPray.updateData(prayPojo.getPrayId(), textView_date_edit.getText().toString(), editText_edit_pray.getText().toString());
-                finish();
+                String tanggal =textView_date_edit.getText().toString();
+                String doa = editText_edit_pray.getText().toString();
+                if(TextUtils.isEmpty(tanggal)){
+                    textView_date_edit.setError("Tanggal Kosong");
+                }else if(TextUtils.isEmpty(doa)){
+                    editText_edit_pray.setError("Doa Kosong");
+                }else {
+                    dataPray.updateData(prayPojo.getPrayId(), textView_date_edit.getText().toString(), editText_edit_pray.getText().toString());
+                    finish();
+                }
 
             }
         });

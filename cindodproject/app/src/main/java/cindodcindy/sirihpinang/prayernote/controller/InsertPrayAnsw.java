@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -97,11 +98,25 @@ public class InsertPrayAnsw extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataPrayAnsw.insertDataAnsw(tv_tgl_1.getText().toString(), tv_tgl_2.getText().toString(),er_isi_1.getText().toString(), et_isi_2.getText().toString());
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(InsertPrayAnsw.this, AnswPrayList.class);
-                startActivity(intent);
-                finish();
+                String t_1=tv_tgl_1.getText().toString();
+                String e_1=er_isi_1.getText().toString();
+                String t_2=tv_tgl_2.getText().toString();
+                String e_2=et_isi_2.getText().toString();
+                if(TextUtils.isEmpty(t_1)){
+                    tv_tgl_1.setError("tanggal doa kosong");
+                }else if(TextUtils.isEmpty(e_1)){
+                    er_isi_1.setError("Doa Kosong");
+                }else if(TextUtils.isEmpty(t_2)){
+                    tv_tgl_2.setError("Tanggal Doa Dijawab Kosong");
+                }else if(TextUtils.isEmpty(e_2)){
+                    et_isi_2.setError("Doa Dijawab Kosong");
+                }else {
+                    dataPrayAnsw.insertDataAnsw(tv_tgl_1.getText().toString(), tv_tgl_2.getText().toString(), er_isi_1.getText().toString(), et_isi_2.getText().toString());
+                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(InsertPrayAnsw.this, AnswPrayList.class);
+                    startActivity(intent);
+                    finish();
+                }
 
 
             }

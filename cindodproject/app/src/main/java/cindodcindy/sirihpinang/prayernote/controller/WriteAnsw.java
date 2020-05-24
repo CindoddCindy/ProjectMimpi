@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -62,16 +63,26 @@ public class WriteAnsw extends AppCompatActivity {
             textView_save_pr_answ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    String tanggal_anw=textView_date_answ.getText().toString();
+                    String pray_answ=editText_pr_answ.getText().toString();
+
+                    if(TextUtils.isEmpty(tanggal_anw)){
+                        textView_date_answ.setError("Tanggal Kosong");
+                    }else if(TextUtils.isEmpty(pray_answ)){
+                        editText_pr_answ.setError("Doa Kosong");
+
+                    }
+                    else {
 
 
-                    dataPrayAnsw.insertDataAnsw(textView_date_dr_pray.getText().toString(), textView_pray_dr_pray.getText().toString(),textView_date_answ.getText().toString(), editText_pr_answ.getText().toString());
-                    Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(WriteAnsw.this, AnswPrayList.class);
-                    startActivity(intent);
-                    finish();
+                        dataPrayAnsw.insertDataAnsw(textView_date_dr_pray.getText().toString(), textView_pray_dr_pray.getText().toString(), textView_date_answ.getText().toString(), editText_pr_answ.getText().toString());
+                        Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(WriteAnsw.this, AnswPrayList.class);
+                        startActivity(intent);
+                        finish();
 
 
-
+                    }
 
             }
         });

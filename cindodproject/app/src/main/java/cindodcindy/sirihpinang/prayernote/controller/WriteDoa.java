@@ -75,11 +75,21 @@ public class WriteDoa extends AppCompatActivity {
         textView_save_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        dataPray.insertData(textView_write_date.getText().toString(), textView_write_pray.getText().toString());
-                        Toast.makeText(getApplicationContext(), "Data Tersimpan", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(WriteDoa.this, ListDoa.class);
-                        startActivity(intent);
-                        finish();
+                        String tanggal = textView_write_date.getText().toString();
+                        String isiDoa= textView_write_pray.getText().toString();
+                        if(TextUtils.isEmpty(tanggal)){
+                            textView_write_date.setError("Tanggal Kosong");
+                        }else if(TextUtils.isEmpty(isiDoa)){
+                            textView_write_pray.setError("Doa Kosong");
+                        }
+                        else {
+
+                            dataPray.insertData(textView_write_date.getText().toString(), textView_write_pray.getText().toString());
+                            Toast.makeText(getApplicationContext(), "Data Tersimpan", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(WriteDoa.this, ListDoa.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
             }
         });
