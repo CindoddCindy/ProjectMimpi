@@ -25,6 +25,7 @@ public class ExpandLayout extends AppCompatActivity {
     private Animation animationDown;
     private CardView cardView_answ_pr;
     private TextView textView_name, textView_pass, textView_logout;
+    private TextView textView_ke_list, textView_ke_list_answ;
 
     SharedPreferences sharedpreferences;
 
@@ -52,6 +53,10 @@ public class ExpandLayout extends AppCompatActivity {
 
         textView_name=findViewById(R.id.tv_user_name);
         textView_pass=findViewById(R.id.tv_paas_);
+
+        textView_ke_list=findViewById(R.id.tv_pr_bc_pr);
+        textView_ke_list_answ=findViewById(R.id.tv_pr_bc_answ);
+
 
 
         sharedpreferences = getSharedPreferences(mypreference,
@@ -97,6 +102,24 @@ public class ExpandLayout extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
+            }
+        });
+
+        textView_ke_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExpandLayout.this,ListDoa.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        textView_ke_list_answ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExpandLayout.this, AnswPrayList.class);
+                startActivity(intent);
+                finish();
             }
         });
 
